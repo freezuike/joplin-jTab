@@ -1,5 +1,5 @@
 {
     "extraScripts": [
-        "jtab.ts"
+        "jtab_markdown.ts"
     ]
 }

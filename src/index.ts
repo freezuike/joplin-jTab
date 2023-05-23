@@ -6,11 +6,7 @@ joplin.plugins.register({
         await joplin.contentScripts.register(
             ContentScriptType.MarkdownItPlugin,
             'jtab',
-            './jtab.js'
+            './jtab_markdown.js'
         );
-
-        await joplin.contentScripts.onMessage('jtab', (message: any) => {
-            return message + '+response';
-        });
     },
 });

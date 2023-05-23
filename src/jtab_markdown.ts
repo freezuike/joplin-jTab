@@ -1,7 +1,6 @@
-const jtab = require("jtab");
+const jtab = require("jtab")
 const Entities = require('html-entities').AllHtmlEntities;
 const htmlentities = new Entities().encode;
-
 export default function () {
     return {
         plugin: function (markdownIt, _options) {
@@ -13,17 +12,13 @@ export default function () {
                 const token = tokens[idx];
                 if (token.info !== 'jtab') return defaultRender(tokens, idx, options, env, self);
 
-                const elementId = 'jtab_target_' + Math.random() + '_' + Date.now();
                 const element = document.createElement('div');
 
-                let html = '';
-
+                let html = "";
                 try {
-                    element.setAttribute('id', elementId);
-                    element.style.display = 'none';
                     document.body.appendChild(element);
-                    jtab.render(element, token.content.trim());
-                    html = '<div class="jtab">' + element.innerHTML + '</div>';
+                    jtab.render(element, token.content);
+                    html = '<div class="jtab chordonly">' + element.innerHTML + '</div>';
                 } catch (error) {
                     console.error(error);
                     return '<div style="border: 1px solid red; padding: 10px;">Could not render JTAB notation: ' + htmlentities(error.message) + '</div>';
@@ -38,7 +33,7 @@ export default function () {
         assets: function () {
             return [
                 {
-                    name: 'jtab.css'
+                    name: "./jtab.css"
                 },
             ];
         },

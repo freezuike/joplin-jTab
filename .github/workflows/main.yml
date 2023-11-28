@@ -29,6 +29,8 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
+    - name: install
+      run: npm install
     - name: Install joplin plugin generator
       run: npm install -g yo generator-joplin
     - name: Create jpl plugin structure

@@ -27,5 +27,13 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-    - run: npm install -g yo generator-joplin
-    - run: npm run dist
+    - name: Install joplin plugin generator
+      run: npm install -g yo generator-joplin
+    - name: Create jpl plugin structure
+      run: yo joplin
+    - name: Build jpl plugin
+      run: npm run dist
+    - name: Upload jpl file to release
+      run: github-release upload --user free-zuike --repo jTab --tag ${{ github.ref }} --name "jTab-${{ github.ref }}.jpl" --file dist/*.jpl
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

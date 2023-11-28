@@ -37,3 +37,4 @@ jobs:
       run: github-release upload --user free-zuike --repo jTab --tag ${{ github.ref }} --name "jTab-${{ github.ref }}.jpl" --file dist/*.jpl
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
